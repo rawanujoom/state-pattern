@@ -1,15 +1,10 @@
 import server from './src/server';
+import mongoose from 'mongoose';
+import 'dotenv/config';
 
 try {
-    server.start(4500);
-
-
-    // 3rd party lib
-    const mongoose = require('mongoose');
-    // internal modules
-    const MONGODB_URI = 'mongodb://localhost:27017/state-diagram';
-
-    mongoose.connect(MONGODB_URI);
+    server.start();
+    mongoose.connect(process.env.MONGODB_URI || '');
 
 } catch(err) {
     console.log('App Crashed !!');

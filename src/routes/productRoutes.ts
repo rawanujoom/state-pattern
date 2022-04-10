@@ -8,7 +8,7 @@ import ProductContext from '../states/product/ProductContext';
 
 const productRouter = Router();
 productRouter.get(
-	'/getProductListByStateAndTransfer',
+	'/getProductListByStateAndTransfer/:state',
 	getProductListByStateAndTransfer
 );
 productRouter.get('/product', getProduct);
@@ -21,10 +21,11 @@ function getProductListByStateAndTransfer(
 	next: NextFunction
 ) {
 	ProductModel.getByProperty({state: req.params.state})
-		.then((data: Array<ProductInterface>) => {
-			data.forEach(product=> {
+		.then(async (data: Array<ProductInterface>) => {
+			for (const product of data) {
 				const context = new ProductContext(product);
-			});
+				await context.next();
+			}
 			res.status(200).json(data);
 		})
 		.catch(next);
@@ -47,7 +48,7 @@ function postProduct(req: Request, res: Response, next: NextFunction) {
 }
 
 function deleteProduct(req: Request, res: Response, next: NextFunction) {
-	ProductModel.delete(parseInt(req.params.id))
+	ProductModel.delete(req.params.id)
 		.then((data: any) => {
 			res.status(200).json(data);
 		})
