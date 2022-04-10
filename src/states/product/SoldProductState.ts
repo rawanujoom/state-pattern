@@ -9,6 +9,10 @@ export default class SoldProductState extends AbstractProductState {
 		this.productContext = productContext
 	}
 
+	next() {
+		this.end();
+	}
+
 	disputeAccept() {
 		this.productContext.setState(this.productContext.returnedProductState);
 	}

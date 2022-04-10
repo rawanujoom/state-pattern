@@ -9,6 +9,10 @@ export default class ReturnedProductState extends AbstractProductState {
 		this.productContext = productContext
 	}
 
+	next() {
+		this.republish();
+	}
+
 	republish() {
 		this.productContext.setState(this.productContext.draftProductState);
 	}

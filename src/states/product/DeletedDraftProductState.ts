@@ -9,6 +9,10 @@ export default class DeletedDraftProductState extends AbstractProductState {
 		this.productContext = productContext
 	}
 
+	next() {
+		this.end();
+	}
+
 	end() {
 		console.log('Draft is deleted, Bye!');
 	}

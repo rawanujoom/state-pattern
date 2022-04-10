@@ -9,6 +9,10 @@ export default class DraftProductState extends AbstractProductState {
 		this.productContext = productContext
 	}
 
+	next() {
+		this.addDraftToListing();
+	}
+
 	addDraftToListing() {
 		this.productContext.setState(this.productContext.availableProductState);
 	}

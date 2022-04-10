@@ -9,6 +9,10 @@ export default class DeletedProductState extends AbstractProductState {
 		this.productContext = productContext;
 	}
 
+	next() {
+		this.end();
+	}
+
 	end() {
         console.log('Product was deleted successfuly, Bye!');
     }

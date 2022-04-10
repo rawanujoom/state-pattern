@@ -9,6 +9,10 @@ export default class ReservedProductState extends AbstractProductState {
 		this.productContext = productContext
 	}
 
+	next() {
+		this.successfulPayment();
+	}
+
 	successfulPayment() {
 		this.productContext.setState(this.productContext.soldProductState);
 	}

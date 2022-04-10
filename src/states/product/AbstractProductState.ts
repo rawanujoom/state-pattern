@@ -2,6 +2,14 @@ import ProductStateInterface from '../../interfaces/ProductStateInterface';
 
 export default abstract class AbstractProductState implements ProductStateInterface {
 
+	next() {
+		throw new Error('Illegal State Transition');
+	}
+
+	prev() {
+		throw new Error('Illegal State Transition');
+	}
+
 	addDraftToListing() {
 		throw new Error('Illegal State Transition');
 	}

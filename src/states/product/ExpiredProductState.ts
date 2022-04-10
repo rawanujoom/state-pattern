@@ -9,6 +9,10 @@ export default class ExpiredProductState extends AbstractProductState {
 		this.productContext = productContext
 	}
 
+	next() {
+		this.renewListing();
+	}
+
 	renewListing() {
 		this.productContext.setState(this.productContext.availableProductState);
 	}
@@ -17,4 +21,3 @@ export default class ExpiredProductState extends AbstractProductState {
 		console.log('Product got expired, Bye!');
 	}
 };
-

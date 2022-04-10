@@ -14,6 +14,7 @@ export default class AvailableProductState extends AbstractProductState {
 		while (this.productContext.isAvailable()) {
 			if (this.expiryTimer >= AvailableProductState.EXPIRY_TIME) {
 				this.exceedDuration();
+				this.expiryTimer = 0;
 				break;
 			} else {
 				this.expiryTimer++;
@@ -21,11 +22,19 @@ export default class AvailableProductState extends AbstractProductState {
 		}
 	}
 
+	next() {
+		this.proceedPayment();
+	}
+
 	delete() {
 		this.productContext.setState(this.productContext.deletedProductState);
 	}
 
-	// should this be handled in product?
+	proceedPayment() {
+		this.expiryTimer = 0;
+		this.productContext.setState(this.productContext.reservedProductState);
+	}
+
 	private exceedDuration() {
 		this.productContext.setState(this.productContext.expiredProductState);
 	}
