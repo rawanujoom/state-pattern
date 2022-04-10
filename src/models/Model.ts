@@ -18,15 +18,15 @@ export default class Model {
      * @param {String} _id optional record id
      * @return {*}
      */
-    get(_id?: number): any {
+    get(_id?: string): any {
         if (_id) {
            return this.model.findById(_id);
         }
-        this.model.find({});
+        return  this.model.find({});
     }
 
     getByProperty(property: Object): any {
-        return this.model.find(property);
+        return this.model.find({state: 'Draft'});
     }
     /**
      *
@@ -44,7 +44,7 @@ export default class Model {
      * @param {object} record shcema object format
      * @return {*}
      */
-    update(_id: number, record: object): any {
+    update(_id: string, record: object): any {
         return this.model.findByIdAndUpdate(_id, record, {new: true});
     }
 
@@ -52,7 +52,7 @@ export default class Model {
      * @param {string} _id
      * @return {*}
      */
-    delete(_id: number): any {
+    delete(_id: string): any {
         // return promise
         return this.model.findByIdAndDelete(_id);
     }

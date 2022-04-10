@@ -1,4 +1,6 @@
 export default interface ProductStateInterface {
+    next: Function;
+    prev: Function;
     addDraftToListing: Function;
     deleteDraftFromListing: Function;
     renewListing: Function;

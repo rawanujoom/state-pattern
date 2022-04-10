@@ -1,5 +1,5 @@
 export default interface CategoryInterface {
-    _id: number;
+    _id: string;
     name: string;
     parentId: number;
 }
