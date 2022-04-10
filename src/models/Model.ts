@@ -26,7 +26,7 @@ export default class Model {
     }
 
     getByProperty(property: Object): any {
-        return this.model.find({state: 'Draft'});
+        return this.model.find(property);
     }
     /**
      *
